@@ -24,29 +24,31 @@ HOST, PORT = "127.0.0.1", 8080  # 127.0.0.1, not localhost: behaves the same on 
 _clips = queue.Queue()          # voice clips waiting for the page
 _finished = threading.Event()   # set when the page says a clip ended
 _page_last_seen = float("-inf")  # when the page last asked /next (time.monotonic); never yet
+_avatar = None                  # the .vrm file named in character_config.yaml
 
 
 class _Handler(SimpleHTTPRequestHandler):
     def do_GET(self):
         global _page_last_seen
+        if self.path == "/avatar.vrm":
+            return self._send(_avatar.read_bytes(), "application/octet-stream")
         if self.path != "/next":
-            return super().do_GET()  # the page, the model and the voice clip, from client/
+            return super().do_GET()  # the page and the voice clip, from client/
         _page_last_seen = time.monotonic()
         try:
             clip = _clips.get_nowait()
         except queue.Empty:
             clip = None
-        self._reply({"audio": clip})
+        self._send(json.dumps({"audio": clip}).encode(), "application/json")
 
     def do_POST(self):
         if self.path == "/done":
             _finished.set()
-        self._reply({})
+        self._send(b"{}", "application/json")
 
-    def _reply(self, data):
-        body = json.dumps(data).encode()
+    def _send(self, body, content_type):
         self.send_response(200)
-        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
@@ -55,12 +57,17 @@ class _Handler(SimpleHTTPRequestHandler):
         pass  # keep the terminal readable
 
 
-def start():
+def start(cfg):
+    global _avatar
+    _avatar = ROOT / cfg["vrm_model"]
+    if not _avatar.exists():
+        sys.exit(f"[setup] Avatar not found: {_avatar}. Check vrm_model in character_config.yaml.")
     try:
         server = ThreadingHTTPServer((HOST, PORT), partial(_Handler, directory=str(ROOT / "client")))
     except OSError:
         sys.exit(f"[setup] Port {PORT} is busy (is Riko already running?). Close it or change PORT in riko/viewer.py.")
     threading.Thread(target=server.serve_forever, daemon=True).start()
+    print(f"[viewer] avatar: {cfg['vrm_model']}")
     print(f"[viewer] avatar page: http://{HOST}:{PORT}  (open it, then click once)")
 
 

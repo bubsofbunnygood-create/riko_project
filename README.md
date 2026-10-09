@@ -28,7 +28,7 @@
 >
 > **No support on GitHub.**
 
-#### **Version:** *Free edition, 50K snapshot (2026-10)*
+#### **Version:** *Open-source version, 50K snapshot (2026-10)*
 
 ---
 
@@ -45,14 +45,15 @@
 - 🎧 **Speech recognition:** [Faster-Whisper](https://github.com/SYSTRAN/faster-whisper) on your PC, or [Groq](https://console.groq.com) Whisper online.
 - 💬 **OpenAI GPT replies** with a personality you write in one YAML file.
 - 🧠 **Chat history** saved to `chat_history.json`, so she remembers the conversation between runs.
-- 🔊 **Voice:** [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) voice cloning on your PC, or [Fish Audio](https://fish.audio) online.
-- 🧍 **VRM avatar** in your browser, lip-synced to her voice.
+- 🔊 **Voice:** [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) voice cloning on your PC, or [Fish Audio](https://fish.audio/?fpr=rayen10) online.
+- 🧍 **VRM avatar** in your browser, lip-synced to her voice. Drag to rotate, scroll to zoom.
+- 🎭 **One config file** to swap her personality, avatar and voice.
 - ✅ **Startup check** that tells you what is missing (API keys, GPT-SoVITS) before you start talking.
 
-## Free vs Patreon
+## Open source vs Patreon
 
 <!-- PLACEHOLDER: fill in the $5 and $15 columns, and the tier links below. -->
-| | Free (this repo) | $5 | $15 |
+| | Open source (this repo) | $5 | $15 |
 |---|:-:|:-:|:-:|
 | Push-to-talk voice chat | ✅ | PLACEHOLDER | PLACEHOLDER |
 | Faster-Whisper / Groq speech recognition | ✅ | PLACEHOLDER | PLACEHOLDER |
@@ -86,7 +87,7 @@
 |---|---|---|
 | `OPENAI_API_KEY` | Always | [platform.openai.com](https://platform.openai.com/api-keys) |
 | `GROQ_API_KEY` | `asr: groq` | [console.groq.com](https://console.groq.com/keys) (free tier) |
-| `FISH_API_KEY` | `tts: fish` | [fish.audio](https://fish.audio/app/api-keys) |
+| `FISH_API_KEY` | `tts: fish` | [fish.audio](https://fish.audio/?fpr=rayen10) |
 
 ## Setup
 
@@ -113,7 +114,7 @@ uv run main.py --tts fish      # Fish Audio voice instead of GPT-SoVITS
 uv run main.py --asr groq      # Groq instead of local Faster-Whisper
 ```
 
-1. Open **http://127.0.0.1:8080** and click once. Browsers only play sound after a click.
+1. Open **http://127.0.0.1:8080** and click once. Browsers only play sound after a click. Drag to rotate her, scroll to zoom.
 2. In the terminal, press **Enter**, talk, press **Enter**.
 3. She answers on the avatar page. With no page open, she plays through your speakers.
 4. **Ctrl+C** to quit.
@@ -128,7 +129,7 @@ uv run python -m riko.asr      # record and print what she heard
 
 ## Configuration
 
-Everything about her is in `character_config.yaml`. API keys stay in `.env`.
+Everything about her is in `character_config.yaml` and `character_files/`. API keys stay in `.env`.
 
 ```yaml
 model: gpt-4.1-mini
@@ -138,18 +139,20 @@ system_prompt: |
   You speak like a snarky anime girl.
   Always refer to the user as "senpai".
 
+vrm_model: character_files/sample_avatar.vrm
+
 asr: local     # local | groq
 tts: sovits    # sovits | fish
 
 sovits:
   url: http://127.0.0.1:9880/tts
   ref_audio_path: character_files/main_sample.wav
-  prompt_text: This is a sample voice for you to just get started with ...
+  prompt_text: This is a sample voice for you to just get started with, ...
   text_lang: en
   prompt_lang: en
 
 fish:
-  voice_id: ""     # blank = Fish's default voice
+  voice_id: 98655a12fa944e26b274c535e5e03842   # the "E-girl" voice
   model: s2.1-pro
 ```
 
@@ -157,9 +160,9 @@ fish:
 |---|---|
 | Personality | `system_prompt` |
 | OpenAI model | `model` |
-| Her GPT-SoVITS voice | `ref_audio_path` (a short clip without long silences) and `prompt_text` (exactly what the clip says) |
-| Her Fish voice | `fish.voice_id`, from any voice page on fish.audio |
-| The avatar | Put a `.vrm` in `client/models/` and change `MODEL` in `client/index.html` |
+| Her GPT-SoVITS voice | `ref_audio_path` (a 3-10 second clip without long silences) and `prompt_text` (exactly what the clip says) |
+| Her Fish voice | `fish.voice_id`: open a voice on [fish.audio](https://fish.audio/?fpr=rayen10) and copy the ID from its address, `fish.audio/m/<voice id>` |
+| Her avatar | `vrm_model`: any `.vrm` file, e.g. a VRoid Studio export in `character_files/` |
 | Whisper size or GPU | `WHISPER_MODEL` / `WHISPER_DEVICE` at the top of `riko/asr.py` |
 | Make her forget the chat | Delete `chat_history.json` |
 
@@ -180,10 +183,9 @@ riko/
   tts.py               GPT-SoVITS or Fish Audio → client/audio/riko.wav
   viewer.py            serves the avatar page and hands it each voice clip
 client/
-  index.html           three.js + three-vrm: white background, arms down, lip sync
-  models/              the VRM avatar
-character_files/       the GPT-SoVITS sample voice
-character_config.yaml  her personality and settings
+  index.html           three.js + three-vrm: white background, arms down, lip sync, rotate/zoom
+character_files/       her avatar (sample_avatar.vrm) and GPT-SoVITS sample voice (main_sample.wav)
+character_config.yaml  her personality, avatar and voice
 ```
 
 ## TODO
@@ -193,13 +195,12 @@ character_config.yaml  her personality and settings
 
 ## Credits
 
-* Voice synthesis by [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) and [Fish Audio](https://fish.audio)
+* Voice synthesis by [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) and [Fish Audio](https://fish.audio/?fpr=rayen10)
 * Speech recognition by [Faster-Whisper](https://github.com/SYSTRAN/faster-whisper) and [Groq](https://groq.com)
 * Language model by [OpenAI](https://platform.openai.com)
 * Avatar rendering by [three.js](https://threejs.org) and [three-vrm](https://github.com/pixiv/three-vrm)
-* Sample avatar `VRM1_Constraint_Twist_Sample.vrm` © pixiv Inc., [VRM Public License 1.0](https://vrm.dev/licenses/1.0/)
+* Sample avatar by [pixiv Inc.](https://github.com/pixiv/three-vrm) (VRM1_Constraint_Twist_Sample)
 
 ## License
 
-Code: MIT. Feel free to clone, modify, and build your own waifu voice companion.
-The sample avatar in `client/models/` keeps its own license (VRM Public License 1.0, redistribution allowed).
+MIT. Feel free to clone, modify, and build your own waifu voice companion.

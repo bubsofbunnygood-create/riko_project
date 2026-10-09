@@ -26,7 +26,7 @@ def main():
     llm.check(cfg)
     asr.check(cfg)
     tts.check(cfg)
-    viewer.start()
+    viewer.start(cfg)
 
     while True:
         try:
