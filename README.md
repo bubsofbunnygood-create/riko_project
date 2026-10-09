@@ -7,8 +7,8 @@
 <h1 align="center">Project Riko</h1>
 
 <p align="center">
-  An anime AI companion you run yourself.<br />
-  Push-to-talk speech recognition, an LLM with a personality, voice cloning, and a lip-synced 3D avatar.
+  <b>Talk to her out loud. She talks back.</b><br />
+  An anime AI companion that runs on your own PC, with her own voice and a 3D avatar that lip-syncs every word.
 </p>
 
 <p align="center">
@@ -17,6 +17,7 @@
   <a href="https://discord.gg/rayenai"><img src="https://img.shields.io/discord/1278117138909102170?style=for-the-badge&logo=discord&logoColor=white&label=Discord&color=5865F2" alt="Discord" /></a>
 </p>
 <p align="center">
+  <img src="https://img.shields.io/badge/version-50K_snapshot-8A5CF6" alt="Version: 50K snapshot" />
   <img src="https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white" alt="Python 3.11+" />
   <img src="https://img.shields.io/badge/uv-package_manager-DE5FE9?logo=uv&logoColor=white" alt="uv" />
   <img src="https://img.shields.io/badge/platform-Windows_%7C_Linux-555" alt="Windows | Linux" />
@@ -28,151 +29,211 @@
 >
 > **No support on GitHub.**
 
-#### **Version:** *Open-source version, 50K snapshot (2026-10)*
-
----
-
-## Demo
+<br />
 
 <!-- PLACEHOLDER: demo clip. Put the thumbnail at docs/thumbnail.png and replace VIDEO_ID. -->
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=VIDEO_ID"><img src="./docs/thumbnail.png" width="720" alt="Watch the demo (PLACEHOLDER)" /></a>
+  <a href="https://www.youtube.com/watch?v=VIDEO_ID"><img src="./docs/thumbnail.png" width="720" alt="Watch Riko in action (PLACEHOLDER)" /></a>
 </p>
 
-## Features
+## 💜 Meet Riko
 
-- 🎙️ **Push-to-talk.** Press Enter, talk, press Enter.
-- 🎧 **Speech recognition:** [Faster-Whisper](https://github.com/SYSTRAN/faster-whisper) on your PC, or [Groq](https://console.groq.com) Whisper online.
-- 💬 **OpenAI GPT replies** with a personality you write in one YAML file.
-- 🧠 **Chat history** saved to `chat_history.json`, so she remembers the conversation between runs.
-- 🔊 **Voice:** [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) voice cloning on your PC, or [Fish Audio](https://fish.audio/?fpr=rayen10) online.
-- 🧍 **VRM avatar** in your browser, lip-synced to her voice. Drag to rotate, scroll to zoom.
-- 🎭 **One config file** to swap her personality, avatar and voice.
-- ✅ **Startup check** that tells you what is missing (API keys, GPT-SoVITS) before you start talking.
+Riko is a voice companion you set up yourself. Press Enter and talk. She hears you, comes up with a reply (usually a snarky one), and says it out loud while her lips move along on screen.
 
-## Open source vs Patreon
+This repo is the open-source core of Project Riko: the whole loop from your voice to hers, written to be read. It's under 500 lines in total, and every part sits in its own small file, so when you want to change how she thinks, sounds or looks, you know exactly where to go.
 
-<!-- PLACEHOLDER: fill in the $5 and $15 columns, and the tier links below. -->
-| | Open source (this repo) | $5 | $15 |
-|---|:-:|:-:|:-:|
-| Push-to-talk voice chat | ✅ | PLACEHOLDER | PLACEHOLDER |
-| Faster-Whisper / Groq speech recognition | ✅ | PLACEHOLDER | PLACEHOLDER |
-| GPT-SoVITS / Fish Audio voice | ✅ | PLACEHOLDER | PLACEHOLDER |
-| VRM avatar with lip sync | ✅ | PLACEHOLDER | PLACEHOLDER |
-| Hands-free listening (no push-to-talk) | ❌ | PLACEHOLDER | PLACEHOLDER |
-| Facial expressions and animations | ❌ | PLACEHOLDER | PLACEHOLDER |
-| Long-term memory | ❌ | PLACEHOLDER | PLACEHOLDER |
-| Tool calling | ❌ | PLACEHOLDER | PLACEHOLDER |
-| VR and transparent desktop window | ❌ | PLACEHOLDER | PLACEHOLDER |
-| Updates | ❌ | PLACEHOLDER | PLACEHOLDER |
+Her personality, her avatar and her voice all live in one config file. Making her yours takes a few minutes.
 
-<p align="center"><a href="https://patreon.com/RayenAI"><b>Get the latest version on Patreon →</b></a></p>
-
-## Requirements
+## ✨ What she can do
 
 | | |
 |---|---|
-| **OS** | Windows 10/11 or Linux. Tested on Windows 11 and Ubuntu 22.04 (WSL2). |
-| **Python** | 3.11+, installed for you by [uv](https://docs.astral.sh/uv/getting-started/installation/). |
-| **CPU** | Any modern CPU. Faster-Whisper `base.en` runs on CPU. |
-| **GPU** | Only for GPT-SoVITS: NVIDIA recommended (tested on an RTX 3060 12 GB). Not needed with Fish Audio. |
-| **Audio** | Microphone and speakers or headphones. |
-| **Browser** | Chrome, Edge or Firefox (WebGL). |
-| **Internet** | For OpenAI, Groq and Fish Audio. The avatar page loads three.js from a CDN. |
-| **Linux only** | `sudo apt install libportaudio2` (microphone access). |
+| 🎙️ **Listens** | Push-to-talk. Press Enter, speak, press Enter. |
+| 👂 **Understands** | Speech to text with [Faster-Whisper](https://github.com/SYSTRAN/faster-whisper) on your own PC, or [Groq](https://console.groq.com)'s fast online Whisper. |
+| 🧠 **Thinks** | Replies come from OpenAI GPT, in whatever personality you write for her. |
+| 📝 **Keeps the conversation** | The chat is saved to `chat_history.json`, so she picks up where you left off. |
+| 🗣️ **Speaks** | Clones a voice from a short clip with [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS), or uses any voice on [Fish Audio](https://fish.audio/?fpr=rayen10). |
+| 💃 **Shows up** | A VRM avatar in your browser that lip-syncs to her voice. Drag to spin her around, scroll to zoom. |
+| 🎭 **Becomes anyone** | Personality, avatar and voice are all set in one file. |
+| ✅ **Tells you what's missing** | Before she starts, a quick check catches a missing key, server or file and tells you how to fix it. |
 
-**API keys**
+## ⚙️ How it works
 
-| Key | Needed for | Get it |
+```mermaid
+flowchart LR
+    you(["🎙️ You talk"]) --> ears["👂 Ears<br/>Faster-Whisper or Groq"]
+    ears --> brain["🧠 Brain<br/>OpenAI GPT"]
+    brain --> voice["🗣️ Voice<br/>GPT-SoVITS or Fish Audio"]
+    voice --> face(["💃 Face<br/>VRM avatar + lip sync"])
+```
+
+Each step is one file, and `main.py` runs them in a loop:
+
+| Step | File | What it does |
 |---|---|---|
-| `OPENAI_API_KEY` | Always | [platform.openai.com](https://platform.openai.com/api-keys) |
-| `GROQ_API_KEY` | `asr: groq` | [console.groq.com](https://console.groq.com/keys) (free tier) |
-| `FISH_API_KEY` | `tts: fish` | [fish.audio](https://fish.audio/?fpr=rayen10) |
+| 👂 Ears | `riko/asr.py` | Records you between the two Enters, turns it into text |
+| 🧠 Brain | `riko/llm.py` | Sends the chat to OpenAI, saves her answer to the history |
+| 🗣️ Voice | `riko/tts.py` | Turns her answer into a voice clip |
+| 💃 Face | `riko/viewer.py` + `client/index.html` | Plays the clip on the avatar page and moves her mouth with it |
 
-## Setup
+## 🚀 Quick start
+
+The easiest way in uses Fish Audio for her voice: no GPU and nothing extra to install. If you'd rather generate her voice on your own PC, do this first and then see [Local voice](#local-voice).
+
+**You need:** a Windows or Linux PC with a microphone, an [OpenAI API key](https://platform.openai.com/api-keys), and a [Fish Audio API key](https://fish.audio/?fpr=rayen10) (sign up, then create one under *API keys*).
+
+**1. Install uv.** It sets up Python for you.
+
+```powershell
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+```bash
+# Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+sudo apt install libportaudio2    # lets Python use your microphone
+```
+
+Close and reopen your terminal afterwards so it can find `uv`.
+
+**2. Get the code.**
 
 ```bash
 git clone https://github.com/rayenfeng/riko_project.git
 cd riko_project
+```
+
+No git? Click the green **Code** button at the top of this page → **Download ZIP**, unzip it, then open a terminal in that folder. On Windows 11: right-click inside the folder → **Open in Terminal**.
+
+**3. Install everything.**
+
+```bash
 uv sync
-cp .env.example .env        # Windows: copy .env.example .env
 ```
 
-Put your keys in `.env`.
-
-**Local voice only:** install [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) and start its API server from the GPT-SoVITS folder:
+**4. Add your API keys.**
 
 ```bash
-python api_v2.py -a 127.0.0.1 -p 9880
+copy .env.example .env    # Linux: cp .env.example .env
+notepad .env              # Linux: nano .env
 ```
 
-## Usage
+Paste your keys after the `=` signs and save. `.env` is git-ignored, so your keys stay out of any commit.
+
+**5. Start her.**
 
 ```bash
-uv run main.py                 # uses asr and tts from character_config.yaml
-uv run main.py --tts fish      # Fish Audio voice instead of GPT-SoVITS
-uv run main.py --asr groq      # Groq instead of local Faster-Whisper
+uv run main.py --tts fish
 ```
 
-1. Open **http://127.0.0.1:8080** and click once. Browsers only play sound after a click. Drag to rotate her, scroll to zoom.
-2. In the terminal, press **Enter**, talk, press **Enter**.
-3. She answers on the avatar page. With no page open, she plays through your speakers.
-4. **Ctrl+C** to quit.
+The first launch takes a minute while it downloads the speech recognition model.
 
-Test one part on its own:
+**6. Say hi.**
 
-```bash
-uv run python -m riko.llm      # one reply from OpenAI
-uv run python -m riko.tts      # one voice line (add --fish for Fish Audio)
-uv run python -m riko.asr      # record and print what she heard
-```
+1. Open **http://127.0.0.1:8080** and click once. Browsers only play sound after a click.
+2. Back in the terminal, press **Enter**, say something, press **Enter**.
+3. She answers on the page. **Ctrl+C** quits.
 
-## Configuration
+> [!TIP]
+> Set `tts: fish` in `character_config.yaml` and a plain `uv run main.py` does the same thing.
 
-Everything about her is in `character_config.yaml` and `character_files/`. API keys stay in `.env`.
+## 🎨 Make her yours
+
+Everything about her lives in `character_config.yaml`. Put her files (avatar, voice clip) in `character_files/`.
 
 ```yaml
-model: gpt-4.1-mini
-history_file: chat_history.json
 system_prompt: |
   You are a helpful assistant named Riko.
   You speak like a snarky anime girl.
   Always refer to the user as "senpai".
-
-vrm_model: character_files/sample_avatar.vrm
-
-asr: local     # local | groq
-tts: sovits    # sovits | fish
-
-sovits:
-  url: http://127.0.0.1:9880/tts
-  ref_audio_path: character_files/main_sample.wav
-  prompt_text: This is a sample voice for you to just get started with, ...
-  text_lang: en
-  prompt_lang: en
-
-fish:
-  voice_id: 98655a12fa944e26b274c535e5e03842   # the "E-girl" voice
-  model: s2.1-pro
 ```
 
-| To change | Edit |
+| To change her... | Edit |
 |---|---|
-| Personality | `system_prompt` |
-| OpenAI model | `model` |
-| Her GPT-SoVITS voice | `ref_audio_path` (a 3-10 second clip without long silences) and `prompt_text` (exactly what the clip says) |
-| Her Fish voice | `fish.voice_id`: open a voice on [fish.audio](https://fish.audio/?fpr=rayen10) and copy the ID from its address, `fish.audio/m/<voice id>` |
-| Her avatar | `vrm_model`: any `.vrm` file, e.g. a VRoid Studio export in `character_files/` |
-| Whisper size or GPU | `WHISPER_MODEL` / `WHISPER_DEVICE` at the top of `riko/asr.py` |
-| Make her forget the chat | Delete `chat_history.json` |
+| **Personality** | `system_prompt`. Describe her the way you'd brief an actor: who she is, how she talks, what she calls you. |
+| **Look** | `vrm_model`. Any `.vrm` file works. You can make your own for free in [VRoid Studio](https://vroid.com/en/studio). |
+| **Fish voice** | `fish.voice_id`. Open any voice on [fish.audio](https://fish.audio/?fpr=rayen10) and copy the ID from the page address: `fish.audio/m/<voice id>`. |
+| **GPT-SoVITS voice** | `ref_audio_path`: a 3–10 second clip with no long silences. `prompt_text`: exactly what the clip says. |
+| **Brain** | `model`. Any OpenAI model. Default: `gpt-4.1-mini`. |
+| **Ears** | `asr: local` (Faster-Whisper, free, on your PC) or `asr: groq` (needs a free [Groq key](https://console.groq.com/keys)). |
+| **Speech model size or GPU** | `WHISPER_MODEL` / `WHISPER_DEVICE` at the top of `riko/asr.py`. |
+| **A fresh start** | Delete `chat_history.json`. |
 
-## How it works
+You can also switch voice or ears for one run without touching the config:
 
+```bash
+uv run main.py --tts sovits    # or fish
+uv run main.py --asr groq      # or local
 ```
- you ──Enter──▶ riko/asr.py ──text──▶ riko/llm.py ──reply──▶ riko/tts.py ──wav──▶ riko/viewer.py ──▶ avatar page
-               Faster-Whisper         OpenAI GPT             GPT-SoVITS            tiny web server     lip sync
-               or Groq                + chat history         or Fish Audio         on :8080
-```
+
+<a id="local-voice"></a>
+## 🎤 Local voice with GPT-SoVITS
+
+Want her voice generated on your own machine, cloned from any clip you like? That's what GPT-SoVITS does. It runs best on an NVIDIA GPU and is installed separately.
+
+1. Install [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) by following its guide.
+2. In the GPT-SoVITS folder, start its API server and leave it running:
+   ```bash
+   python api_v2.py -a 127.0.0.1 -p 9880
+   ```
+3. Start Riko with `uv run main.py --tts sovits`.
+
+She starts with the sample voice in `character_files/main_sample.wav`. Swap in your own clip (see the table above) to change it.
+
+## 💎 Open source and Patreon
+
+This repo is the core, and it's yours to keep and build on. The Patreon version is where Riko keeps growing: hands-free conversation, expressions and animations, long-term memory, and whatever comes next.
+
+<!-- PLACEHOLDER: fill in the $5 and $15 columns and the tier links. -->
+| | Open source | [$5](https://patreon.com/RayenAI) | [$15](https://patreon.com/RayenAI) |
+|---|:-:|:-:|:-:|
+| Voice chat with a lip-synced VRM avatar | ✅ | PLACEHOLDER | PLACEHOLDER |
+| Local or online speech recognition | ✅ | PLACEHOLDER | PLACEHOLDER |
+| Voice cloning (GPT-SoVITS) and Fish Audio voices | ✅ | PLACEHOLDER | PLACEHOLDER |
+| One-click install with a setup checker | Terminal setup | PLACEHOLDER | PLACEHOLDER |
+| Hands-free conversation (no push-to-talk) | — | PLACEHOLDER | PLACEHOLDER |
+| Facial expressions and animations | — | PLACEHOLDER | PLACEHOLDER |
+| Long-term memory | — | PLACEHOLDER | PLACEHOLDER |
+| Tool calling | — | PLACEHOLDER | PLACEHOLDER |
+| VR and transparent desktop window | — | PLACEHOLDER | PLACEHOLDER |
+| Updates | 50K snapshot | PLACEHOLDER | PLACEHOLDER |
+
+<p align="center"><a href="https://patreon.com/RayenAI"><b>See the latest version on Patreon →</b></a></p>
+
+## 📋 Requirements
+
+| | With Fish Audio (easiest) | With GPT-SoVITS (local voice) |
+|---|---|---|
+| **System** | Windows 10/11 or Linux | Windows 10/11 or Linux |
+| **GPU** | Not needed | NVIDIA recommended |
+| **Python** | 3.11+, installed by uv | 3.11+, installed by uv |
+| **API keys** | OpenAI + Fish Audio | OpenAI |
+| **Also** | Microphone, speakers or headphones, a browser with WebGL, an internet connection | Same, plus a working GPT-SoVITS install |
+
+Tested on Windows 11 and Ubuntu 22.04 (WSL2) with an RTX 3060 12 GB. Faster-Whisper runs on the CPU, so any modern processor handles the ears.
+
+**Where the keys come from**
+
+| Key | When | Get it |
+|---|---|---|
+| `OPENAI_API_KEY` | Always | [platform.openai.com](https://platform.openai.com/api-keys) |
+| `FISH_API_KEY` | `tts: fish` | [fish.audio](https://fish.audio/?fpr=rayen10) |
+| `GROQ_API_KEY` | `asr: groq` | [console.groq.com](https://console.groq.com/keys) (free tier) |
+
+## 🩹 Troubleshooting
+
+| You see | Try this |
+|---|---|
+| `[setup] OPENAI_API_KEY is missing` (or another key) | Add it to `.env`. Check the file is called exactly `.env`, not `.env.txt`. |
+| `GPT-SoVITS is not running` | Start its API server first (see [Local voice](#local-voice)), or run with `--tts fish`. |
+| `Port 8080 is busy` | Riko is probably already running in another terminal. Close that one. |
+| `Avatar not found` | Check the `vrm_model` path in `character_config.yaml`. |
+| She replies in the terminal, but there's no sound | Click the avatar page once. Browsers block sound until you do. |
+| `no avatar page open, playing on speakers` | That's normal: with no page open she talks through your speakers. Open the page to see her. |
+| `(heard nothing, try again)` | Make sure your mic is the default recording device, and talk a little longer. |
+
+## 🔧 Under the hood
 
 ```
 main.py                the loop: record → transcribe → reply → speak → play
@@ -183,24 +244,32 @@ riko/
   tts.py               GPT-SoVITS or Fish Audio → client/audio/riko.wav
   viewer.py            serves the avatar page and hands it each voice clip
 client/
-  index.html           three.js + three-vrm: white background, arms down, lip sync, rotate/zoom
-character_files/       her avatar (sample_avatar.vrm) and GPT-SoVITS sample voice (main_sample.wav)
+  index.html           three.js + three-vrm: the avatar, lip sync, rotate and zoom
+character_files/       her avatar (sample_avatar.vrm) and sample voice (main_sample.wav)
 character_config.yaml  her personality, avatar and voice
 ```
 
-## TODO
+Every part also runs on its own, which helps when something isn't working:
 
-* [ ] Live microphone input (hands-free, no push-to-talk)
-* [ ] Emotion or tone control in speech synthesis
+```bash
+uv run python -m riko.llm      # one reply from OpenAI
+uv run python -m riko.tts      # one voice line (add --fish for Fish Audio)
+uv run python -m riko.asr      # record, then print what she heard
+```
 
-## Credits
+**Ideas if you want to build on it**
 
-* Voice synthesis by [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) and [Fish Audio](https://fish.audio/?fpr=rayen10)
-* Speech recognition by [Faster-Whisper](https://github.com/SYSTRAN/faster-whisper) and [Groq](https://groq.com)
-* Language model by [OpenAI](https://platform.openai.com)
-* Avatar rendering by [three.js](https://threejs.org) and [three-vrm](https://github.com/pixiv/three-vrm)
-* Sample avatar by [pixiv Inc.](https://github.com/pixiv/three-vrm) (VRM1_Constraint_Twist_Sample)
+- **Hands-free listening.** Replace `record()` in `riko/asr.py` with something that notices when you stop talking.
+- **Emotions.** `client/index.html` already opens her mouth with `vrm.expressionManager.setValue('aa', ...)`. Expressions like `happy` and `angry` work the same way.
 
-## License
+## 🙏 Credits
+
+- Voice by [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) and [Fish Audio](https://fish.audio/?fpr=rayen10)
+- Speech recognition by [Faster-Whisper](https://github.com/SYSTRAN/faster-whisper) and [Groq](https://groq.com)
+- Language model by [OpenAI](https://platform.openai.com)
+- Avatar rendering by [three.js](https://threejs.org) and [three-vrm](https://github.com/pixiv/three-vrm)
+- Sample avatar by [pixiv Inc.](https://github.com/pixiv/three-vrm) (VRM1_Constraint_Twist_Sample)
+
+## 📄 License
 
 MIT. Feel free to clone, modify, and build your own waifu voice companion.

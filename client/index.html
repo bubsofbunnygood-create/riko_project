@@ -64,7 +64,7 @@
     vrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.z = arm;
 
     // ── Camera: framed by her head height, so short and tall models look the same.
-    //    Drag to rotate, scroll to zoom. ──
+    //    Drag to rotate, scroll to zoom. She glides a little after you let go. ──
     const headY = vrm.humanoid.getNormalizedBoneNode('head').getWorldPosition(new THREE.Vector3()).y;
     camera.position.set(0, headY * 0.94, headY * 1.37);
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -72,7 +72,8 @@
     controls.enablePan = false;
     controls.minDistance = 0.5;
     controls.maxDistance = 5;
-    controls.update();
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;  // lower = longer glide
 
     // ── Lip sync: her mouth opens with the loudness of her voice ──
     const voice = document.getElementById('voice');
@@ -121,6 +122,7 @@
       mouth += (level / loudest - mouth) * 0.5;  // smoothed so it does not flicker
       vrm.expressionManager.setValue('aa', mouth);
       vrm.update(clock.getDelta());
+      controls.update();  // runs the glide
       renderer.render(scene, camera);
     });
   </script>
