@@ -25,18 +25,13 @@
 </p>
 
 > [!IMPORTANT]
-> **This is the 50K snapshot. No more updates here. The latest version is on [Patreon](https://patreon.com/RayenAI).**
+> **This is the 50K snapshot: a complete Riko, open source and yours to keep.** It's frozen at this release, so it stays a stable base to build on.
 >
-> **No support on GitHub.**
+> Riko keeps growing on **[Patreon](https://patreon.com/RayenAI)**, home of the Full Source and the Desktop App. [See how they compare.](#three-ways)
+>
+> GitHub issues aren't monitored, so there's no support here.
 
-<br />
-
-<!-- PLACEHOLDER: demo clip. Put the thumbnail at docs/thumbnail.png and replace VIDEO_ID. -->
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=VIDEO_ID"><img src="./docs/thumbnail.png" width="720" alt="Watch Riko in action (PLACEHOLDER)" /></a>
-</p>
-
-## 💜 Meet Riko
+## 🦊 Meet Riko
 
 Riko is a voice companion you set up yourself. Press Enter and talk. She hears you, comes up with a reply (usually a snarky one), and says it out loud while her lips move along on screen.
 
@@ -53,7 +48,7 @@ Her personality, her avatar and her voice all live in one config file. Making he
 | 🧠 **Thinks** | Replies come from OpenAI GPT, in whatever personality you write for her. |
 | 📝 **Keeps the conversation** | The chat is saved to `chat_history.json`, so she picks up where you left off. |
 | 🗣️ **Speaks** | Clones a voice from a short clip with [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS), or uses any voice on [Fish Audio](https://fish.audio/?fpr=rayen10). |
-| 💃 **Shows up** | A VRM avatar in your browser that lip-syncs to her voice. Drag to spin her around, scroll to zoom. |
+| 💃 **Shows up** | A VRM avatar in your browser that lip-syncs to her voice. Drag to spin her around, right-drag to move her, scroll to zoom. |
 | 🎭 **Becomes anyone** | Personality, avatar and voice are all set in one file. |
 | ✅ **Tells you what's missing** | Before she starts, a quick check catches a missing key, server or file and tells you how to fix it. |
 
@@ -181,25 +176,31 @@ Want her voice generated on your own machine, cloned from any clip you like? Tha
 
 She starts with the sample voice in `character_files/main_sample.wav`. Swap in your own clip (see the table above) to change it.
 
-## 💎 Open source and Patreon
+<a id="three-ways"></a>
+## 💎 Three ways to have Riko
 
-This repo is the core, and it's yours to keep and build on. The Patreon version is where Riko keeps growing: hands-free conversation, expressions and animations, long-term memory, and whatever comes next.
+Same Riko, three ways to have her. Each one is made for a different kind of person, so pick the one that matches how you like to work.
 
-<!-- PLACEHOLDER: fill in the $5 and $15 columns and the tier links. -->
-| | Open source | [$5](https://patreon.com/RayenAI) | [$15](https://patreon.com/RayenAI) |
-|---|:-:|:-:|:-:|
-| Voice chat with a lip-synced VRM avatar | ✅ | PLACEHOLDER | PLACEHOLDER |
-| Local or online speech recognition | ✅ | PLACEHOLDER | PLACEHOLDER |
-| Voice cloning (GPT-SoVITS) and Fish Audio voices | ✅ | PLACEHOLDER | PLACEHOLDER |
-| One-click install with a setup checker | Terminal setup | PLACEHOLDER | PLACEHOLDER |
-| Hands-free conversation (no push-to-talk) | — | PLACEHOLDER | PLACEHOLDER |
-| Facial expressions and animations | — | PLACEHOLDER | PLACEHOLDER |
-| Long-term memory | — | PLACEHOLDER | PLACEHOLDER |
-| Tool calling | — | PLACEHOLDER | PLACEHOLDER |
-| VR and transparent desktop window | — | PLACEHOLDER | PLACEHOLDER |
-| Updates | 50K snapshot | PLACEHOLDER | PLACEHOLDER |
+| | 🛠️ Open Source<br /><sub>this repo</sub> | 🧪 [Full Source](https://patreon.com/RayenAI)<br /><sub>on Patreon</sub> | 🖥️ [Desktop App](https://patreon.com/RayenAI)<br /><sub>on Patreon</sub> |
+|---|---|---|---|
+| **Made for** | Builders who want a clean base to make their own | Tinkerers who want every new feature and the code behind it | Anyone who wants her up and running, no code involved |
+| **What you get** | This repo: open source, under 500 lines | The full source of the newest build | A Windows app with an installer and a desktop icon |
+| Talks with a lip-synced VRM avatar | ✅ | ✅ | ✅ |
+| Hears you | Faster-Whisper on your PC, or Groq | Groq Whisper | Groq Whisper |
+| Her voice | GPT-SoVITS voice clone or Fish Audio | GPT-SoVITS voice clone or Fish Audio | Both, switched in Settings, with automatic fallback |
+| Conversation | Push-to-talk, easy to rewire | Hands-free: she can tell when you've finished | Hands-free, or type to her |
+| Face and body | Lip sync, ready for your own animation system | Expressions and animations she picks herself | Expressions and animations she picks herself |
+| Memory | Chat history in a file you control | Long-term memory across sessions | Long-term memory you can browse, edit and reset |
+| Doing things | Plug in your own tools | Tool calling with tools you write | Looks things up online when you ask |
+| Backgrounds and anime scenes | A clean stage for your own | Drop in any 3D room, with lighting presets and a light editor | A clean stage, all eyes on her |
+| Your own character | Edit one config file: avatar, voice, personality | Edit the config files: avatar, voice, personality, room | Guided in the app: drop in a VRM, pick a voice, write her personality |
+| VR and desktop window | Yours to add | Quest VR and a transparent floating window | Transparent floating window |
+| Setup | `uv` and a terminal, with a setup checker | `setup.bat`, with a setup checker | One installer; keys tested on screen as you paste them |
+| Runs on | Windows and Linux | Windows | Windows 10 / 11 |
+| License | [MIT](LICENSE): fork it, change it, ship what you build | Personal use, full source included | Personal use; your videos and streams are yours |
+| Updates | Stays at the 50K snapshot | New features as they land | Supported updates and bug fixes for version 1 |
 
-<p align="center"><a href="https://patreon.com/RayenAI"><b>See the latest version on Patreon →</b></a></p>
+<p align="center"><a href="https://patreon.com/RayenAI"><b>Get the Full Source or the Desktop App on Patreon →</b></a></p>
 
 ## 📋 Requirements
 
@@ -272,4 +273,4 @@ uv run python -m riko.asr      # record, then print what she heard
 
 ## 📄 License
 
-MIT. Feel free to clone, modify, and build your own waifu voice companion.
+[MIT](LICENSE). Feel free to clone, modify, and build your own waifu voice companion.
